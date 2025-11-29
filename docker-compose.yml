@@ -1,0 +1,8 @@
+services:
+  appointment-manager:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: appointment-manager
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
