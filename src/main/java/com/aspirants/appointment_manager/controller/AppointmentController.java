@@ -33,20 +33,15 @@ public class AppointmentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
-    public ResponseEntity<List<AppointmentResponse>> getAppointments(
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false) Long vendorId) {
-        List<AppointmentResponse> responses;
-        if (userId != null) {
-            responses = appointmentService.getAppointmentsByUser(userId);
-        } else if (vendorId != null) {
-            responses = appointmentService.getAppointmentsByVendor(vendorId);
-        } else {
-            // Default to empty list or implement get all if needed (usually restricted for
-            // admin)
-            responses = List.of();
-        }
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AppointmentResponse>> getAppointmentsByUser(@PathVariable Long userId) {
+        List<AppointmentResponse> responses = appointmentService.getAppointmentsByUser(userId);
+        return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping("/vendor/{vendorId}")
+    public ResponseEntity<List<AppointmentResponse>> getAppointmentsByVendor(@PathVariable Long vendorId) {
+        List<AppointmentResponse> responses = appointmentService.getAppointmentsByVendor(vendorId);
         return ResponseEntity.ok(responses);
     }
 
