@@ -134,9 +134,119 @@ If you haven't set up Docker on Windows yet, follow these steps:
     docker compose up --build
     ```
 
+    _(Note: You might need `sudo` on Linux depending on your Docker configuration)_
+
+3.  **Access the Application**:
+    Open your browser and navigate to: http://localhost:8080
+
+4.  **Access PostgreSQL Database**:
+    The PostgreSQL database is accessible on port **5433** with the following credentials:
+
+    - **Host**: localhost
+    - **Port**: 5433 (changed from default 5432 to avoid conflicts)
+    - **Database**: appointmentdb
+    - **Username**: postgres
+    - **Password**: postgres123
+
+    You can connect using any PostgreSQL client (e.g., pgAdmin, DBeaver, or psql):
+
+    ```bash
+    psql -h localhost -p 5433 -U postgres -d appointmentdb
+    ```
+
+    Or use Docker exec to access the database directly:
+
+    ```bash
+    docker exec -it appointment-manager-db psql -U postgres -d appointmentdb
+    ```
+
+5.  **Stop the Application**:
+    Press `Ctrl+C` in the terminal or run:
+
+    ```bash
+    docker compose down
+    ```
+
+    To remove the database volume as well (⚠️ deletes all data):
+
+    ```bash
+    docker compose down -v
+    ```
+
+## Running Tests
+
+To run the test suite:
+
 ```bash
-docker ps
+./gradlew test
 ```
+
+## Project Structure
+
+```
+appointment-manager/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/aspirants/appointment_manager/
+│   │   └── resources/
+│   └── test/
+│       └── java/
+│           └── com/aspirants/appointment_manager/
+├── build.gradle
+├── settings.gradle
+└── README.md
+```
+
+## Technology Stack
+
+- **Java**: 21
+- **Spring Boot**: 4.0.0
+- **Build Tool**: Gradle
+- **Database**: PostgreSQL 16
+- **Testing**: JUnit Platform
+
+## Gradle Commands
+
+| Command             | Description               |
+| ------------------- | ------------------------- |
+| `./gradlew build`   | Builds the application    |
+| `./gradlew bootRun` | Runs the application      |
+| `./gradlew test`    | Runs tests                |
+| `./gradlew clean`   | Cleans build artifacts    |
+| `./gradlew tasks`   | Lists all available tasks |
+
+## Troubleshooting
+
+### Port 8080 Already in Use
+
+If port 8080 is already occupied, you can change the port by adding this to `src/main/resources/application.properties`:
+
+```properties
+server.port=8081
+```
+
+### Port 5433 Already in Use (PostgreSQL)
+
+If port 5433 is already occupied, you can change the PostgreSQL port in `docker-compose.yml`:
+
+```yaml
+postgres:
+  ports:
+    - "5434:5432" # Change 5434 to any available port
+```
+
+> **Note**: Port 5433 is used instead of the default 5432 to avoid conflicts with local PostgreSQL installations.
+
+### Database Connection Issues
+
+If the application fails to connect to the database:
+
+1. Ensure PostgreSQL container is running:
+
+   ```bash
+   docker ps
+   ```
 
 2. Check PostgreSQL logs:
 
