@@ -1,8 +1,36 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: appointment-manager-db
+    environment:
+      POSTGRES_DB: appointmentdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   appointment-manager:
     build: .
     ports:
       - "8080:8080"
     container_name: appointment-manager
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=default
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=appointmentdb
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres123
+
+volumes:
+  postgres_data:
