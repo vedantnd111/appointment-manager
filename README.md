@@ -64,6 +64,73 @@ Open your browser and navigate to:
 http://localhost:8080
 ```
 
+## Running with Docker
+
+You can also run the application using Docker. This ensures a consistent environment and simplifies the setup process.
+
+### Prerequisites
+
+- **Docker** and **Docker Compose** installed on your machine.
+
+#### Windows Setup
+If you haven't set up Docker on Windows yet, follow these steps:
+
+1.  **Enable Hyper-V and Virtual Machine Platform**:
+    Run PowerShell as Administrator and execute:
+    ```powershell
+    dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+2.  **Install WSL 2**:
+    ```powershell
+    wsl --install
+    wsl --set-default-version 2
+    ```
+    *Reboot your PC after this step.*
+
+3.  **Install Docker Desktop**:
+    - Download from [Docker Official Site](https://www.docker.com/products/docker-desktop).
+    - During installation, choose **Use WSL 2 instead of Hyper-V** (recommended).
+    - Keep **Add shortcut to PATH** checked.
+
+4.  **Verify Installation**:
+    Open a new terminal and run:
+    ```bash
+    docker version
+    docker run hello-world
+    ```
+
+### Steps
+
+1.  **Clone the Repository** (if you haven't already):
+    ```bash
+    git clone git@github.com:vedantnd111/appointment-manager.git
+    cd appointment-manager
+    ```
+
+2.  **Run with Docker Compose**:
+
+    **On Windows (PowerShell/CMD):**
+    ```bash
+    docker compose up --build
+    ```
+
+    **On Linux/macOS:**
+    ```bash
+    docker compose up --build
+    ```
+    *(Note: You might need `sudo` on Linux depending on your Docker configuration)*
+
+3.  **Access the Application**:
+    Open your browser and navigate to: http://localhost:8080
+
+4.  **Stop the Application**:
+    Press `Ctrl+C` in the terminal or run:
+    ```bash
+    docker compose down
+    ```
+
 ## Running Tests
 
 To run the test suite:
