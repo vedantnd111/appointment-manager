@@ -4,7 +4,15 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReviewRequest {
 
     @NotNull(message = "User ID is required")
@@ -24,56 +32,4 @@ public class ReviewRequest {
     @Size(max = 1000, message = "Comment must not exceed 1000 characters")
     private String comment;
 
-    // Constructors
-    public ReviewRequest() {
-    }
-
-    public ReviewRequest(Long userId, Long vendorId, Long appointmentId, Integer rating, String comment) {
-        this.userId = userId;
-        this.vendorId = vendorId;
-        this.appointmentId = appointmentId;
-        this.rating = rating;
-        this.comment = comment;
-    }
-
-    // Getters and Setters
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

@@ -5,19 +5,26 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "services")
+@Table(name = "service")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = { "category", "vendor", "appointments" })
 public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_id")
+    @EqualsAndHashCode.Include
     private Long serviceId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,120 +59,4 @@ public class Service {
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
-
-    // Constructors
-    public Service() {
-    }
-
-    public Service(Long serviceId, Category category, VendorProfile vendor, String serviceName,
-            String description, Integer duration, BigDecimal price, Boolean isActive) {
-        this.serviceId = serviceId;
-        this.category = category;
-        this.vendor = vendor;
-        this.serviceName = serviceName;
-        this.description = description;
-        this.duration = duration;
-        this.price = price;
-        this.isActive = isActive;
-    }
-
-    // Getters and Setters
-    public Long getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public VendorProfile getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Service service = (Service) o;
-        return Objects.equals(serviceId, service.serviceId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(serviceId);
-    }
-
-    @Override
-    public String toString() {
-        return "Service{" +
-                "serviceId=" + serviceId +
-                ", serviceName='" + serviceName + '\'' +
-                ", description='" + description + '\'' +
-                ", duration=" + duration +
-                ", price=" + price +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

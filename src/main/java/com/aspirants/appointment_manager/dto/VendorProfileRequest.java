@@ -2,7 +2,15 @@ package com.aspirants.appointment_manager.dto;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class VendorProfileRequest {
 
     @NotBlank(message = "Vendor name is required")
@@ -32,75 +40,4 @@ public class VendorProfileRequest {
     @Size(max = 20, message = "GST number must not exceed 20 characters")
     private String gstNumber;
 
-    // Constructors
-    public VendorProfileRequest() {
-    }
-
-    public VendorProfileRequest(String vendorName, Long categoryId, String emailId, String phoneNo,
-            String description, AddressDTO address, String gstNumber) {
-        this.vendorName = vendorName;
-        this.categoryId = categoryId;
-        this.emailId = emailId;
-        this.phoneNo = phoneNo;
-        this.description = description;
-        this.address = address;
-        this.gstNumber = gstNumber;
-    }
-
-    // Getters and Setters
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
-
-    public String getGstNumber() {
-        return gstNumber;
-    }
-
-    public void setGstNumber(String gstNumber) {
-        this.gstNumber = gstNumber;
-    }
 }
