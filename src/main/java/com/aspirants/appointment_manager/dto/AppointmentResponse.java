@@ -1,11 +1,19 @@
 package com.aspirants.appointment_manager.dto;
 
 import com.aspirants.appointment_manager.enums.AppointmentStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AppointmentResponse {
 
     private Long appointmentId;
@@ -22,131 +30,4 @@ public class AppointmentResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Constructors
-    public AppointmentResponse() {
-    }
-
-    public AppointmentResponse(Long appointmentId, Long userId, String userName, Long vendorId, String vendorName,
-            ServiceResponse service, LocalDate appointmentDate, LocalTime startTime,
-            LocalTime endTime, AppointmentStatus status, String notes,
-            LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.appointmentId = appointmentId;
-        this.userId = userId;
-        this.userName = userName;
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
-        this.service = service;
-        this.appointmentDate = appointmentDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.status = status;
-        this.notes = notes;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    // Getters and Setters
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Long getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
-    }
-
-    public ServiceResponse getService() {
-        return service;
-    }
-
-    public void setService(ServiceResponse service) {
-        this.service = service;
-    }
-
-    public LocalDate getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public AppointmentStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(AppointmentStatus status) {
-        this.status = status;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

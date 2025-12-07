@@ -4,6 +4,7 @@ import com.aspirants.appointment_manager.enums.AppointmentStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,15 +13,21 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "appointment")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = { "user", "vendor", "service", "payment", "reviews" })
 public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "appointment_id")
+    @EqualsAndHashCode.Include
     private Long appointmentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -68,158 +75,4 @@ public class Appointment {
 
     @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
-
-    // Constructors
-    public Appointment() {
-    }
-
-    public Appointment(Long appointmentId, UserProfile user, VendorProfile vendor, Service service,
-            LocalDate appointmentDate, LocalTime startTime, LocalTime endTime,
-            AppointmentStatus status, String notes, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.appointmentId = appointmentId;
-        this.user = user;
-        this.vendor = vendor;
-        this.service = service;
-        this.appointmentDate = appointmentDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.status = status;
-        this.notes = notes;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    // Getters and Setters
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public UserProfile getUser() {
-        return user;
-    }
-
-    public void setUser(UserProfile user) {
-        this.user = user;
-    }
-
-    public VendorProfile getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
-    }
-
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public LocalDate getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public AppointmentStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(AppointmentStatus status) {
-        this.status = status;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Appointment that = (Appointment) o;
-        return Objects.equals(appointmentId, that.appointmentId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(appointmentId);
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointmentId=" + appointmentId +
-                ", appointmentDate=" + appointmentDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", status=" + status +
-                ", notes='" + notes + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }

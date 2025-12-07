@@ -4,9 +4,17 @@ import com.aspirants.appointment_manager.enums.PaymentMethod;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentRequest {
 
     @NotNull(message = "Appointment ID is required")
@@ -22,47 +30,4 @@ public class PaymentRequest {
     @Size(max = 100, message = "Transaction ID must not exceed 100 characters")
     private String transactionId;
 
-    // Constructors
-    public PaymentRequest() {
-    }
-
-    public PaymentRequest(Long appointmentId, BigDecimal amount, PaymentMethod paymentMethod, String transactionId) {
-        this.appointmentId = appointmentId;
-        this.amount = amount;
-        this.paymentMethod = paymentMethod;
-        this.transactionId = transactionId;
-    }
-
-    // Getters and Setters
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
-    }
 }
