@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "user", "vendor", "service", "payment", "reviews" })
+@ToString(exclude = { "user", "store", "service", "payment", "reviews" })
 public class Appointment {
 
     @Id

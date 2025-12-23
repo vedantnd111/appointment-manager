@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "user", "vendor", "appointment" })
+@ToString(exclude = { "user", "store", "appointment" })
 public class Review {
 
     @Id

@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "category", "address", "services", "appointments", "availabilities", "reviews", "favorites" })
+@ToString(exclude = { "category", "stores" })
 public class VendorProfile {
 
     @Id
@@ -60,16 +60,4 @@ public class VendorProfile {
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Store> stores = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VendorAvailability> availabilities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Favorite> favorites = new ArrayList<>();
 }
