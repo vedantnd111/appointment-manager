@@ -33,15 +33,14 @@ public class UserProfile {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     @Size(max = 100)
-    @Column(name = "email_id", nullable = false, unique = true)
+    @Column(name = "email_id", unique = true)
     private String emailId;
 
     @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
-    @Column(name = "phone_no", nullable = false)
+    @Column(name = "phone_no", nullable = false, unique = true)
     private String phoneNo;
 
     @Column(name = "birth_date")
@@ -62,6 +61,12 @@ public class UserProfile {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
+    @Column(name = "is_phone_verified", nullable = false)
+    private Boolean isPhoneVerified = false;
+
+    @Column(name = "last_login_at")
+    private LocalDateTime lastLoginAt;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 
@@ -79,7 +84,8 @@ public class UserProfile {
     }
 
     public UserProfile(Long userId, String firstName, String lastName, String emailId, String phoneNo,
-            LocalDate birthDate, Gender gender, Address address, LocalDateTime createdAt, Boolean isActive) {
+            LocalDate birthDate, Gender gender, Address address, LocalDateTime createdAt, Boolean isActive,
+            Boolean isPhoneVerified, LocalDateTime lastLoginAt) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -90,6 +96,8 @@ public class UserProfile {
         this.address = address;
         this.createdAt = createdAt;
         this.isActive = isActive;
+        this.isPhoneVerified = isPhoneVerified;
+        this.lastLoginAt = lastLoginAt;
     }
 
     // Getters and Setters
@@ -203,6 +211,22 @@ public class UserProfile {
 
     public void setFavorites(List<Favorite> favorites) {
         this.favorites = favorites;
+    }
+
+    public Boolean getIsPhoneVerified() {
+        return isPhoneVerified;
+    }
+
+    public void setIsPhoneVerified(Boolean isPhoneVerified) {
+        this.isPhoneVerified = isPhoneVerified;
+    }
+
+    public LocalDateTime getLastLoginAt() {
+        return lastLoginAt;
+    }
+
+    public void setLastLoginAt(LocalDateTime lastLoginAt) {
+        this.lastLoginAt = lastLoginAt;
     }
 
     @Override

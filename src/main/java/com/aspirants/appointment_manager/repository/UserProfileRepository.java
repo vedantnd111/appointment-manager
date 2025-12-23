@@ -15,4 +15,14 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
     List<UserProfile> findByIsActive(Boolean isActive);
 
     boolean existsByEmailId(String emailId);
+
+    /**
+     * Find user by phone number
+     */
+    Optional<UserProfile> findByPhoneNo(String phoneNo);
+
+    /**
+     * Check if phone number exists
+     */
+    boolean existsByPhoneNo(String phoneNo);
 }
