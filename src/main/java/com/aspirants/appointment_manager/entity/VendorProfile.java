@@ -5,19 +5,26 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "vendor_profiles")
+@Table(name = "vendor")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = { "category", "address", "services", "appointments", "availabilities", "reviews", "favorites" })
 public class VendorProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vendor_id")
+    @EqualsAndHashCode.Include
     private Long vendorId;
 
     @NotBlank(message = "Vendor name is required")
@@ -54,120 +61,15 @@ public class VendorProfile {
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Store> stores = new ArrayList<>();
 
-    // Constructors
-    public VendorProfile() {
-    }
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments = new ArrayList<>();
 
-    public VendorProfile(Long vendorId, String vendorName, Category category, String emailId, String phoneNo,
-            String description, String gstNumber, Boolean isActive) {
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
-        this.category = category;
-        this.emailId = emailId;
-        this.phoneNo = phoneNo;
-        this.description = description;
-        this.gstNumber = gstNumber;
-        this.isActive = isActive;
-    }
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VendorAvailability> availabilities = new ArrayList<>();
 
-    // Getters and Setters
-    public Long getVendorId() {
-        return vendorId;
-    }
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getGstNumber() {
-        return gstNumber;
-    }
-
-    public void setGstNumber(String gstNumber) {
-        this.gstNumber = gstNumber;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public List<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(List<Store> stores) {
-        this.stores = stores;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        VendorProfile that = (VendorProfile) o;
-        return Objects.equals(vendorId, that.vendorId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vendorId);
-    }
-
-    @Override
-    public String toString() {
-        return "VendorProfile{" +
-                "vendorId=" + vendorId +
-                ", vendorName='" + vendorName + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
-                ", description='" + description + '\'' +
-                ", gstNumber='" + gstNumber + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorite> favorites = new ArrayList<>();
 }

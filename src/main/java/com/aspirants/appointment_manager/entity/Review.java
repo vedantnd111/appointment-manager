@@ -5,18 +5,25 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "review")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = { "user", "vendor", "appointment" })
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
+    @EqualsAndHashCode.Include
     private Long reviewId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,101 +51,4 @@ public class Review {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    // Constructors
-    public Review() {
-    }
-
-    public Review(Long reviewId, UserProfile user, Store store, Appointment appointment,
-            Integer rating, String comment, LocalDateTime createdAt) {
-        this.reviewId = reviewId;
-        this.user = user;
-        this.store = store;
-        this.appointment = appointment;
-        this.rating = rating;
-        this.comment = comment;
-        this.createdAt = createdAt;
-    }
-
-    // Getters and Setters
-    public Long getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(Long reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public UserProfile getUser() {
-        return user;
-    }
-
-    public void setUser(UserProfile user) {
-        this.user = user;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
-    }
-
-    public Appointment getAppointment() {
-        return appointment;
-    }
-
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Review review = (Review) o;
-        return Objects.equals(reviewId, review.reviewId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(reviewId);
-    }
-
-    @Override
-    public String toString() {
-        return "Review{" +
-                "reviewId=" + reviewId +
-                ", rating=" + rating +
-                ", comment='" + comment + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }

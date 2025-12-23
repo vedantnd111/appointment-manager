@@ -1,20 +1,27 @@
 package com.aspirants.appointment_manager.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-@Table(name = "favorites", uniqueConstraints = {
+@Table(name = "favorite", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "user_id", "vendor_id" })
 })
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = { "user", "vendor" })
 public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "favorite_id")
+    @EqualsAndHashCode.Include
     private Long favoriteId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,71 +35,4 @@ public class Favorite {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    // Constructors
-    public Favorite() {
-    }
-
-    public Favorite(Long favoriteId, UserProfile user, VendorProfile vendor, LocalDateTime createdAt) {
-        this.favoriteId = favoriteId;
-        this.user = user;
-        this.vendor = vendor;
-        this.createdAt = createdAt;
-    }
-
-    // Getters and Setters
-    public Long getFavoriteId() {
-        return favoriteId;
-    }
-
-    public void setFavoriteId(Long favoriteId) {
-        this.favoriteId = favoriteId;
-    }
-
-    public UserProfile getUser() {
-        return user;
-    }
-
-    public void setUser(UserProfile user) {
-        this.user = user;
-    }
-
-    public VendorProfile getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Favorite favorite = (Favorite) o;
-        return Objects.equals(favoriteId, favorite.favoriteId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(favoriteId);
-    }
-
-    @Override
-    public String toString() {
-        return "Favorite{" +
-                "favoriteId=" + favoriteId +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }

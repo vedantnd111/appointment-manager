@@ -3,10 +3,18 @@ package com.aspirants.appointment_manager.dto;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AppointmentRequest {
 
     @NotNull(message = "User ID is required")
@@ -27,67 +35,4 @@ public class AppointmentRequest {
 
     @Size(max = 1000, message = "Notes must not exceed 1000 characters")
     private String notes;
-
-    // Constructors
-    public AppointmentRequest() {
-    }
-
-    public AppointmentRequest(Long userId, Long storeId, Long serviceId, LocalDate appointmentDate,
-            LocalTime startTime, String notes) {
-        this.userId = userId;
-        this.storeId = storeId;
-        this.serviceId = serviceId;
-        this.appointmentDate = appointmentDate;
-        this.startTime = startTime;
-        this.notes = notes;
-    }
-
-    // Getters and Setters
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
-    }
-
-    public Long getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public LocalDate getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }
