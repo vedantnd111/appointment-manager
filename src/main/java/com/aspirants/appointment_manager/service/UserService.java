@@ -94,6 +94,44 @@ public class UserService {
         userRepository.save(user);
     }
 
+    /**
+     * Find user by phone number
+     */
+    @Transactional(readOnly = true)
+    public UserProfile findByPhoneNumber(String phoneNo) {
+        return userRepository.findByPhoneNo(phoneNo).orElse(null);
+    }
+
+    /**
+     * Create user from OTP verification (for new users)
+     */
+    public UserProfile createUserFromOtp(String phoneNo, String firstName, String lastName, String emailId) {
+        // Check if user already exists
+        if (userRepository.existsByPhoneNo(phoneNo)) {
+            throw new DuplicateResourceException("User", "phoneNo", phoneNo);
+        }
+
+        UserProfile user = new UserProfile();
+        user.setPhoneNo(phoneNo);
+        user.setFirstName(firstName != null ? firstName : "User");
+        user.setLastName(lastName != null ? lastName : "");
+        user.setEmailId(emailId);
+        user.setIsActive(true);
+        user.setIsPhoneVerified(true);
+
+        return userRepository.save(user);
+    }
+
+    /**
+     * Update last login timestamp
+     */
+    public void updateLastLogin(Long userId) {
+        UserProfile user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        user.setLastLoginAt(java.time.LocalDateTime.now());
+        userRepository.save(user);
+    }
+
     private Address mapToAddressEntity(AddressDTO dto) {
         Address address = new Address();
         address.setAddressLine1(dto.getAddressLine1());

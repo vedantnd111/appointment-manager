@@ -8,14 +8,14 @@ import lombok.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "vendor_availability")
+@Table(name = "store_availabilities")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "vendor" })
-public class VendorAvailability {
+@ToString(exclude = { "store" })
+public class StoreAvailability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,8 @@ public class VendorAvailability {
     private Long availabilityId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "day_of_week", length = 20, nullable = false)

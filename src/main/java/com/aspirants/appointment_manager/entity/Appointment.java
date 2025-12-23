@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "user", "vendor", "service", "payment", "reviews" })
+@ToString(exclude = { "user", "store", "service", "payment", "reviews" })
 public class Appointment {
 
     @Id
@@ -35,8 +35,8 @@ public class Appointment {
     private UserProfile user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id", nullable = false)

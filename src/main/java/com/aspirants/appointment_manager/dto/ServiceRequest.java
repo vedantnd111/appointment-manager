@@ -21,8 +21,8 @@ public class ServiceRequest {
     @NotNull(message = "Category ID is required")
     private Long categoryId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotBlank(message = "Service name is required")
     @Size(max = 100, message = "Service name must not exceed 100 characters")

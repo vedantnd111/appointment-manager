@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "user", "vendor", "appointment" })
+@ToString(exclude = { "user", "store", "appointment" })
 public class Review {
 
     @Id
@@ -31,8 +31,8 @@ public class Review {
     private UserProfile user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "appointment_id", nullable = false)

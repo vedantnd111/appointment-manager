@@ -5,11 +5,11 @@ import com.aspirants.appointment_manager.dto.ServiceRequest;
 import com.aspirants.appointment_manager.dto.ServiceResponse;
 import com.aspirants.appointment_manager.entity.Category;
 import com.aspirants.appointment_manager.entity.Service;
-import com.aspirants.appointment_manager.entity.VendorProfile;
+import com.aspirants.appointment_manager.entity.Store;
 import com.aspirants.appointment_manager.exception.ResourceNotFoundException;
 import com.aspirants.appointment_manager.repository.CategoryRepository;
 import com.aspirants.appointment_manager.repository.ServiceRepository;
-import com.aspirants.appointment_manager.repository.VendorProfileRepository;
+import com.aspirants.appointment_manager.repository.StoreRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,26 +21,26 @@ public class ServiceService {
 
     private final ServiceRepository serviceRepository;
     private final CategoryRepository categoryRepository;
-    private final VendorProfileRepository vendorRepository;
+    private final StoreRepository storeRepository;
 
     public ServiceService(ServiceRepository serviceRepository,
             CategoryRepository categoryRepository,
-            VendorProfileRepository vendorRepository) {
+            StoreRepository storeRepository) {
         this.serviceRepository = serviceRepository;
         this.categoryRepository = categoryRepository;
-        this.vendorRepository = vendorRepository;
+        this.storeRepository = storeRepository;
     }
 
     public ServiceResponse createService(ServiceRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new ResourceNotFoundException("Category", "id", request.getCategoryId()));
 
-        VendorProfile vendor = vendorRepository.findById(request.getVendorId())
-                .orElseThrow(() -> new ResourceNotFoundException("Vendor", "id", request.getVendorId()));
+        Store store = storeRepository.findById(request.getStoreId()) // request.getVendorId() should be storeId logic
+                .orElseThrow(() -> new ResourceNotFoundException("Store", "id", request.getStoreId()));
 
         Service service = new Service();
         service.setCategory(category);
-        service.setVendor(vendor);
+        service.setStore(store);
         service.setServiceName(request.getServiceName());
         service.setDescription(request.getDescription());
         service.setDuration(request.getDuration());
@@ -66,11 +66,11 @@ public class ServiceService {
     }
 
     @Transactional(readOnly = true)
-    public List<ServiceResponse> getServicesByVendor(Long vendorId) {
-        VendorProfile vendor = vendorRepository.findById(vendorId)
-                .orElseThrow(() -> new ResourceNotFoundException("Vendor", "id", vendorId));
+    public List<ServiceResponse> getServicesByStore(Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Store", "id", storeId));
 
-        return serviceRepository.findByVendorAndIsActive(vendor, true).stream()
+        return serviceRepository.findByStoreAndIsActive(store, true).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
@@ -121,8 +121,8 @@ public class ServiceService {
         return new ServiceResponse(
                 service.getServiceId(),
                 categoryResponse,
-                service.getVendor().getVendorId(),
-                service.getVendor().getVendorName(),
+                service.getStore().getStoreId(),
+                service.getStore().getStoreName(),
                 service.getServiceName(),
                 service.getDescription(),
                 service.getDuration(),

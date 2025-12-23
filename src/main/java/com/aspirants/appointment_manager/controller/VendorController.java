@@ -1,7 +1,5 @@
 package com.aspirants.appointment_manager.controller;
 
-import com.aspirants.appointment_manager.dto.VendorAvailabilityRequest;
-import com.aspirants.appointment_manager.dto.VendorAvailabilityResponse;
 import com.aspirants.appointment_manager.dto.VendorProfileRequest;
 import com.aspirants.appointment_manager.dto.VendorProfileResponse;
 import com.aspirants.appointment_manager.service.VendorService;
@@ -60,28 +58,4 @@ public class VendorController {
         return ResponseEntity.noContent().build();
     }
 
-    // Availability Endpoints
-
-    @PostMapping("/{id}/availability")
-    public ResponseEntity<VendorAvailabilityResponse> addAvailability(
-            @PathVariable Long id,
-            @Valid @RequestBody VendorAvailabilityRequest request) {
-        VendorAvailabilityResponse response = vendorService.addAvailability(id, request);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{id}/availability")
-    public ResponseEntity<List<VendorAvailabilityResponse>> getVendorAvailability(@PathVariable Long id) {
-        List<VendorAvailabilityResponse> responses = vendorService.getVendorAvailability(id);
-        return ResponseEntity.ok(responses);
-    }
-
-    @PutMapping("/{id}/availability/{availabilityId}")
-    public ResponseEntity<VendorAvailabilityResponse> updateAvailability(
-            @PathVariable Long id,
-            @PathVariable Long availabilityId,
-            @Valid @RequestBody VendorAvailabilityRequest request) {
-        VendorAvailabilityResponse response = vendorService.updateAvailability(id, availabilityId, request);
-        return ResponseEntity.ok(response);
-    }
 }

@@ -15,8 +15,8 @@ public class ServiceResponse {
 
     private Long serviceId;
     private CategoryResponse category;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private String serviceName;
     private String description;
     private Integer duration;

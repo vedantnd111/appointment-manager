@@ -32,10 +32,6 @@ public class VendorProfileRequest {
     @Size(max = 1000, message = "Description must not exceed 1000 characters")
     private String description;
 
-    @Valid
-    @NotNull(message = "Address is required")
-    private AddressDTO address;
-
     @NotBlank(message = "GST number is required")
     @Size(max = 20, message = "GST number must not exceed 20 characters")
     private String gstNumber;

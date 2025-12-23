@@ -19,8 +19,8 @@ public class AppointmentResponse {
     private Long appointmentId;
     private Long userId;
     private String userName;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private ServiceResponse service;
     private LocalDate appointmentDate;
     private LocalTime startTime;

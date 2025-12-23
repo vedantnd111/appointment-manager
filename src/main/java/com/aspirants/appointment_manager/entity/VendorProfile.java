@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = { "category", "address", "services", "appointments", "availabilities", "reviews", "favorites" })
+@ToString(exclude = { "category", "stores" })
 public class VendorProfile {
 
     @Id
@@ -51,32 +51,13 @@ public class VendorProfile {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
-    private Address address;
-
     @Size(max = 15)
     @Column(name = "gst_number", unique = true)
     private String gstNumber;
-
-    @Column(name = "average_rating", precision = 3, scale = 2)
-    private BigDecimal averageRating;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Service> services = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VendorAvailability> availabilities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Favorite> favorites = new ArrayList<>();
+    private List<Store> stores = new ArrayList<>();
 }

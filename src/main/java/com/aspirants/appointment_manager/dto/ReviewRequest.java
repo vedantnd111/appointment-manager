@@ -18,8 +18,8 @@ public class ReviewRequest {
     @NotNull(message = "User ID is required")
     private Long userId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotNull(message = "Appointment ID is required")
     private Long appointmentId;

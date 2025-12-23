@@ -16,8 +16,8 @@ public class ReviewResponse {
     private Long reviewId;
     private Long userId;
     private String userName;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private Long appointmentId;
     private Integer rating;
     private String comment;

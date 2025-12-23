@@ -20,8 +20,8 @@ public class AppointmentRequest {
     @NotNull(message = "User ID is required")
     private Long userId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotNull(message = "Service ID is required")
     private Long serviceId;
