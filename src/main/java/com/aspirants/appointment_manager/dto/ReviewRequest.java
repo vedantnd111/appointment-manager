@@ -10,8 +10,8 @@ public class ReviewRequest {
     @NotNull(message = "User ID is required")
     private Long userId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotNull(message = "Appointment ID is required")
     private Long appointmentId;
@@ -28,9 +28,9 @@ public class ReviewRequest {
     public ReviewRequest() {
     }
 
-    public ReviewRequest(Long userId, Long vendorId, Long appointmentId, Integer rating, String comment) {
+    public ReviewRequest(Long userId, Long storeId, Long appointmentId, Integer rating, String comment) {
         this.userId = userId;
-        this.vendorId = vendorId;
+        this.storeId = storeId;
         this.appointmentId = appointmentId;
         this.rating = rating;
         this.comment = comment;
@@ -45,12 +45,12 @@ public class ReviewRequest {
         this.userId = userId;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
     public Long getAppointmentId() {

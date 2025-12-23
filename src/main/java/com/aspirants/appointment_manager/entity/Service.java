@@ -25,8 +25,8 @@ public class Service {
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @NotBlank(message = "Service name is required")
     @Size(max = 100)
@@ -57,11 +57,11 @@ public class Service {
     public Service() {
     }
 
-    public Service(Long serviceId, Category category, VendorProfile vendor, String serviceName,
+    public Service(Long serviceId, Category category, Store store, String serviceName,
             String description, Integer duration, BigDecimal price, Boolean isActive) {
         this.serviceId = serviceId;
         this.category = category;
-        this.vendor = vendor;
+        this.store = store;
         this.serviceName = serviceName;
         this.description = description;
         this.duration = duration;
@@ -86,12 +86,12 @@ public class Service {
         this.category = category;
     }
 
-    public VendorProfile getVendor() {
-        return vendor;
+    public Store getStore() {
+        return store;
     }
 
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public String getServiceName() {

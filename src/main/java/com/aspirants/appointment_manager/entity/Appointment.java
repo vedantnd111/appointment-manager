@@ -28,8 +28,8 @@ public class Appointment {
     private UserProfile user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id", nullable = false)
@@ -73,12 +73,12 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(Long appointmentId, UserProfile user, VendorProfile vendor, Service service,
+    public Appointment(Long appointmentId, UserProfile user, Store store, Service service,
             LocalDate appointmentDate, LocalTime startTime, LocalTime endTime,
             AppointmentStatus status, String notes, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.appointmentId = appointmentId;
         this.user = user;
-        this.vendor = vendor;
+        this.store = store;
         this.service = service;
         this.appointmentDate = appointmentDate;
         this.startTime = startTime;
@@ -106,12 +106,12 @@ public class Appointment {
         this.user = user;
     }
 
-    public VendorProfile getVendor() {
-        return vendor;
+    public Store getStore() {
+        return store;
     }
 
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Service getService() {

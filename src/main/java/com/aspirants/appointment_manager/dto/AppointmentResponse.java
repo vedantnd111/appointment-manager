@@ -11,8 +11,8 @@ public class AppointmentResponse {
     private Long appointmentId;
     private Long userId;
     private String userName;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private ServiceResponse service;
     private LocalDate appointmentDate;
     private LocalTime startTime;
@@ -26,15 +26,15 @@ public class AppointmentResponse {
     public AppointmentResponse() {
     }
 
-    public AppointmentResponse(Long appointmentId, Long userId, String userName, Long vendorId, String vendorName,
+    public AppointmentResponse(Long appointmentId, Long userId, String userName, Long storeId, String storeName,
             ServiceResponse service, LocalDate appointmentDate, LocalTime startTime,
             LocalTime endTime, AppointmentStatus status, String notes,
             LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.appointmentId = appointmentId;
         this.userId = userId;
         this.userName = userName;
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
+        this.storeId = storeId;
+        this.storeName = storeName;
         this.service = service;
         this.appointmentDate = appointmentDate;
         this.startTime = startTime;
@@ -70,20 +70,20 @@ public class AppointmentResponse {
         this.userName = userName;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public ServiceResponse getService() {

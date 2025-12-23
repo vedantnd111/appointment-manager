@@ -39,9 +39,9 @@ public class AppointmentController {
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping("/vendor/{vendorId}")
-    public ResponseEntity<List<AppointmentResponse>> getAppointmentsByVendor(@PathVariable Long vendorId) {
-        List<AppointmentResponse> responses = appointmentService.getAppointmentsByVendor(vendorId);
+    @GetMapping("/store/{storeId}")
+    public ResponseEntity<List<AppointmentResponse>> getAppointmentsByStore(@PathVariable Long storeId) {
+        List<AppointmentResponse> responses = appointmentService.getAppointmentsByStore(storeId);
         return ResponseEntity.ok(responses);
     }
 

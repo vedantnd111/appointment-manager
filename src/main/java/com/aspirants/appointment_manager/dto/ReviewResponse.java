@@ -7,8 +7,8 @@ public class ReviewResponse {
     private Long reviewId;
     private Long userId;
     private String userName;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private Long appointmentId;
     private Integer rating;
     private String comment;
@@ -18,13 +18,13 @@ public class ReviewResponse {
     public ReviewResponse() {
     }
 
-    public ReviewResponse(Long reviewId, Long userId, String userName, Long vendorId, String vendorName,
+    public ReviewResponse(Long reviewId, Long userId, String userName, Long storeId, String storeName,
             Long appointmentId, Integer rating, String comment, LocalDateTime createdAt) {
         this.reviewId = reviewId;
         this.userId = userId;
         this.userName = userName;
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
+        this.storeId = storeId;
+        this.storeName = storeName;
         this.appointmentId = appointmentId;
         this.rating = rating;
         this.comment = comment;
@@ -56,20 +56,20 @@ public class ReviewResponse {
         this.userName = userName;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public Long getAppointmentId() {

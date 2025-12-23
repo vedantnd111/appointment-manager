@@ -12,8 +12,8 @@ public class AppointmentRequest {
     @NotNull(message = "User ID is required")
     private Long userId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotNull(message = "Service ID is required")
     private Long serviceId;
@@ -32,10 +32,10 @@ public class AppointmentRequest {
     public AppointmentRequest() {
     }
 
-    public AppointmentRequest(Long userId, Long vendorId, Long serviceId, LocalDate appointmentDate,
+    public AppointmentRequest(Long userId, Long storeId, Long serviceId, LocalDate appointmentDate,
             LocalTime startTime, String notes) {
         this.userId = userId;
-        this.vendorId = vendorId;
+        this.storeId = storeId;
         this.serviceId = serviceId;
         this.appointmentDate = appointmentDate;
         this.startTime = startTime;
@@ -51,12 +51,12 @@ public class AppointmentRequest {
         this.userId = userId;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
     public Long getServiceId() {

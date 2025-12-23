@@ -44,50 +44,29 @@ public class VendorProfile {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
-    private Address address;
-
     @Size(max = 15)
     @Column(name = "gst_number", unique = true)
     private String gstNumber;
-
-    @Column(name = "average_rating", precision = 3, scale = 2)
-    private BigDecimal averageRating;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Service> services = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VendorAvailability> availabilities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Favorite> favorites = new ArrayList<>();
+    private List<Store> stores = new ArrayList<>();
 
     // Constructors
     public VendorProfile() {
     }
 
     public VendorProfile(Long vendorId, String vendorName, Category category, String emailId, String phoneNo,
-            String description, Address address, String gstNumber, BigDecimal averageRating, Boolean isActive) {
+            String description, String gstNumber, Boolean isActive) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.category = category;
         this.emailId = emailId;
         this.phoneNo = phoneNo;
         this.description = description;
-        this.address = address;
         this.gstNumber = gstNumber;
-        this.averageRating = averageRating;
         this.isActive = isActive;
     }
 
@@ -140,28 +119,12 @@ public class VendorProfile {
         this.description = description;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getGstNumber() {
         return gstNumber;
     }
 
     public void setGstNumber(String gstNumber) {
         this.gstNumber = gstNumber;
-    }
-
-    public BigDecimal getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(BigDecimal averageRating) {
-        this.averageRating = averageRating;
     }
 
     public Boolean getIsActive() {
@@ -172,44 +135,12 @@ public class VendorProfile {
         this.isActive = isActive;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Store> getStores() {
+        return stores;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
-    }
-
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    public List<VendorAvailability> getAvailabilities() {
-        return availabilities;
-    }
-
-    public void setAvailabilities(List<VendorAvailability> availabilities) {
-        this.availabilities = availabilities;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public List<Favorite> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Favorite> favorites) {
-        this.favorites = favorites;
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
     }
 
     @Override
@@ -236,7 +167,6 @@ public class VendorProfile {
                 ", phoneNo='" + phoneNo + '\'' +
                 ", description='" + description + '\'' +
                 ", gstNumber='" + gstNumber + '\'' +
-                ", averageRating=" + averageRating +
                 ", isActive=" + isActive +
                 '}';
     }

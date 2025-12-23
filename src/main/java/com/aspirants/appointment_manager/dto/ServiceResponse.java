@@ -6,8 +6,8 @@ public class ServiceResponse {
 
     private Long serviceId;
     private CategoryResponse category;
-    private Long vendorId;
-    private String vendorName;
+    private Long storeId;
+    private String storeName;
     private String serviceName;
     private String description;
     private Integer duration;
@@ -18,12 +18,12 @@ public class ServiceResponse {
     public ServiceResponse() {
     }
 
-    public ServiceResponse(Long serviceId, CategoryResponse category, Long vendorId, String vendorName,
+    public ServiceResponse(Long serviceId, CategoryResponse category, Long storeId, String storeName,
             String serviceName, String description, Integer duration, BigDecimal price, Boolean isActive) {
         this.serviceId = serviceId;
         this.category = category;
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
+        this.storeId = storeId;
+        this.storeName = storeName;
         this.serviceName = serviceName;
         this.description = description;
         this.duration = duration;
@@ -48,20 +48,20 @@ public class ServiceResponse {
         this.category = category;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public String getServiceName() {

@@ -3,14 +3,14 @@ package com.aspirants.appointment_manager.dto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
-public class VendorProfileRequest {
+public class StoreRequest {
 
-    @NotBlank(message = "Vendor name is required")
-    @Size(max = 100, message = "Vendor name must not exceed 100 characters")
-    private String vendorName;
+    @NotNull(message = "Vendor ID is required")
+    private Long vendorId;
 
-    @NotNull(message = "Category ID is required")
-    private Long categoryId;
+    @NotBlank(message = "Store name is required")
+    @Size(max = 100, message = "Store name must not exceed 100 characters")
+    private String storeName;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
@@ -24,39 +24,39 @@ public class VendorProfileRequest {
     @Size(max = 1000, message = "Description must not exceed 1000 characters")
     private String description;
 
-    @NotBlank(message = "GST number is required")
-    @Size(max = 20, message = "GST number must not exceed 20 characters")
-    private String gstNumber;
+    @Valid
+    @NotNull(message = "Address is required")
+    private AddressDTO address;
 
     // Constructors
-    public VendorProfileRequest() {
+    public StoreRequest() {
     }
 
-    public VendorProfileRequest(String vendorName, Long categoryId, String emailId, String phoneNo,
-            String description, String gstNumber) {
-        this.vendorName = vendorName;
-        this.categoryId = categoryId;
+    public StoreRequest(Long vendorId, String storeName, String emailId, String phoneNo,
+            String description, AddressDTO address) {
+        this.vendorId = vendorId;
+        this.storeName = storeName;
         this.emailId = emailId;
         this.phoneNo = phoneNo;
         this.description = description;
-        this.gstNumber = gstNumber;
+        this.address = address;
     }
 
     // Getters and Setters
-    public String getVendorName() {
-        return vendorName;
+    public Long getVendorId() {
+        return vendorId;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setVendorId(Long vendorId) {
+        this.vendorId = vendorId;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public String getEmailId() {
@@ -83,11 +83,11 @@ public class VendorProfileRequest {
         this.description = description;
     }
 
-    public String getGstNumber() {
-        return gstNumber;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setGstNumber(String gstNumber) {
-        this.gstNumber = gstNumber;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 }

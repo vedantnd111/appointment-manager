@@ -8,8 +8,8 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "vendor_availabilities")
-public class VendorAvailability {
+@Table(name = "store_availabilities")
+public class StoreAvailability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +17,8 @@ public class VendorAvailability {
     private Long availabilityId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "day_of_week", length = 20, nullable = false)
@@ -36,13 +36,13 @@ public class VendorAvailability {
     private Boolean isAvailable = true;
 
     // Constructors
-    public VendorAvailability() {
+    public StoreAvailability() {
     }
 
-    public VendorAvailability(Long availabilityId, VendorProfile vendor, DayOfWeek dayOfWeek,
+    public StoreAvailability(Long availabilityId, Store store, DayOfWeek dayOfWeek,
             LocalTime startTime, LocalTime endTime, Boolean isAvailable) {
         this.availabilityId = availabilityId;
-        this.vendor = vendor;
+        this.store = store;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -58,12 +58,12 @@ public class VendorAvailability {
         this.availabilityId = availabilityId;
     }
 
-    public VendorProfile getVendor() {
-        return vendor;
+    public Store getStore() {
+        return store;
     }
 
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public DayOfWeek getDayOfWeek() {
@@ -104,7 +104,7 @@ public class VendorAvailability {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        VendorAvailability that = (VendorAvailability) o;
+        StoreAvailability that = (StoreAvailability) o;
         return Objects.equals(availabilityId, that.availabilityId);
     }
 
@@ -115,7 +115,7 @@ public class VendorAvailability {
 
     @Override
     public String toString() {
-        return "VendorAvailability{" +
+        return "StoreAvailability{" +
                 "availabilityId=" + availabilityId +
                 ", dayOfWeek=" + dayOfWeek +
                 ", startTime=" + startTime +

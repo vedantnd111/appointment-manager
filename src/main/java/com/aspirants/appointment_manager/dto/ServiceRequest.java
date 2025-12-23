@@ -13,8 +13,8 @@ public class ServiceRequest {
     @NotNull(message = "Category ID is required")
     private Long categoryId;
 
-    @NotNull(message = "Vendor ID is required")
-    private Long vendorId;
+    @NotNull(message = "Store ID is required")
+    private Long storeId;
 
     @NotBlank(message = "Service name is required")
     @Size(max = 100, message = "Service name must not exceed 100 characters")
@@ -35,10 +35,10 @@ public class ServiceRequest {
     public ServiceRequest() {
     }
 
-    public ServiceRequest(Long categoryId, Long vendorId, String serviceName, String description,
+    public ServiceRequest(Long categoryId, Long storeId, String serviceName, String description,
             Integer duration, BigDecimal price) {
         this.categoryId = categoryId;
-        this.vendorId = vendorId;
+        this.storeId = storeId;
         this.serviceName = serviceName;
         this.description = description;
         this.duration = duration;
@@ -54,12 +54,12 @@ public class ServiceRequest {
         this.categoryId = categoryId;
     }
 
-    public Long getVendorId() {
-        return vendorId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
     public String getServiceName() {

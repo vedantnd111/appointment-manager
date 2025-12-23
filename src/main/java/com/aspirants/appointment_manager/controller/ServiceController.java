@@ -34,11 +34,11 @@ public class ServiceController {
 
     @GetMapping
     public ResponseEntity<List<ServiceResponse>> getAllServices(
-            @RequestParam(required = false) Long vendorId,
+            @RequestParam(required = false) Long storeId,
             @RequestParam(required = false) Long categoryId) {
         List<ServiceResponse> responses;
-        if (vendorId != null) {
-            responses = serviceService.getServicesByVendor(vendorId);
+        if (storeId != null) {
+            responses = serviceService.getServicesByStore(storeId);
         } else if (categoryId != null) {
             responses = serviceService.getServicesByCategory(categoryId);
         } else {

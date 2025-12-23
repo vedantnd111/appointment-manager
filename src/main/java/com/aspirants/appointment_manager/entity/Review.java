@@ -24,8 +24,8 @@ public class Review {
     private UserProfile user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private VendorProfile vendor;
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "appointment_id", nullable = false)
@@ -49,11 +49,11 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long reviewId, UserProfile user, VendorProfile vendor, Appointment appointment,
+    public Review(Long reviewId, UserProfile user, Store store, Appointment appointment,
             Integer rating, String comment, LocalDateTime createdAt) {
         this.reviewId = reviewId;
         this.user = user;
-        this.vendor = vendor;
+        this.store = store;
         this.appointment = appointment;
         this.rating = rating;
         this.comment = comment;
@@ -77,12 +77,12 @@ public class Review {
         this.user = user;
     }
 
-    public VendorProfile getVendor() {
-        return vendor;
+    public Store getStore() {
+        return store;
     }
 
-    public void setVendor(VendorProfile vendor) {
-        this.vendor = vendor;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Appointment getAppointment() {
