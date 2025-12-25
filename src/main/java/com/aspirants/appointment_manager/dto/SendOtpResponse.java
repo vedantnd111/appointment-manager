@@ -1,31 +1,15 @@
 package com.aspirants.appointment_manager.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class SendOtpResponse {
-
     private String message;
-    private Integer expiresIn; // in seconds
-
-    public SendOtpResponse() {
-    }
-
-    public SendOtpResponse(String message, Integer expiresIn) {
-        this.message = message;
-        this.expiresIn = expiresIn;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Integer getExpiresIn() {
-        return expiresIn;
-    }
-
-    public void setExpiresIn(Integer expiresIn) {
-        this.expiresIn = expiresIn;
-    }
+    private Integer expiresIn;
 }

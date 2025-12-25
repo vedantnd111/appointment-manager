@@ -3,6 +3,15 @@ package com.aspirants.appointment_manager.dto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class StoreRequest {
 
     @NotNull(message = "Vendor ID is required")
@@ -27,67 +36,4 @@ public class StoreRequest {
     @Valid
     @NotNull(message = "Address is required")
     private AddressDTO address;
-
-    // Constructors
-    public StoreRequest() {
-    }
-
-    public StoreRequest(Long vendorId, String storeName, String emailId, String phoneNo,
-            String description, AddressDTO address) {
-        this.vendorId = vendorId;
-        this.storeName = storeName;
-        this.emailId = emailId;
-        this.phoneNo = phoneNo;
-        this.description = description;
-        this.address = address;
-    }
-
-    // Getters and Setters
-    public Long getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
 }
